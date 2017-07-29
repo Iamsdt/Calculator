@@ -64,4 +64,71 @@ class MainActivity : AppCompatActivity() {
         }
         etShowNumber.setText(buClickValue)
     }
+
+    var op="*"
+    var oldNumber=""
+    fun buOpEevent(view:View){
+
+        val buSelect= view as Button
+        when(buSelect.id) {
+            buMul.id -> {
+
+                op="*"
+
+
+            }
+            buDiv.id -> {
+
+                op="/"
+            }
+            buSub.id -> {
+
+
+                op="-"
+            }
+            buSum.id -> {
+
+                op="+"
+            }
+
+        }
+        oldNumber=etShowNumber.text.toString()
+        isNewOp=true
+    }
+
+    fun buEqualEvent(view:View){
+        val newNumber=etShowNumber.text.toString()
+        var finalNumber:Double?=null
+        when(op){
+
+            "*"->{
+                finalNumber=  oldNumber.toDouble() *newNumber.toDouble()
+            }
+            "/"->{
+                finalNumber=  oldNumber.toDouble() /newNumber.toDouble()
+            }
+            "+"->{
+                finalNumber=  oldNumber.toDouble()+newNumber.toDouble()
+            }
+            "-"->{
+                finalNumber=  oldNumber.toDouble() *newNumber.toDouble()
+            }
+        }
+        etShowNumber.setText(finalNumber.toString())
+        isNewOp=true
+    }
+
+    fun buPercent(view:View){
+        val number:Double=etShowNumber.text.toString().toDouble()/100
+
+        etShowNumber.setText(number.toString())
+        isNewOp=true
+
+    }
+
+    fun buClean(view:View){
+        etShowNumber.setText("0")
+        isNewOp=true
+    }
+
 }
